@@ -3,8 +3,16 @@
 const { PrismaClient } = require('./prisma/db-client')
 const prisma = new PrismaClient()
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const port = 3000
+
+app.use(
+  cors({
+    origin: '*',
+    methods: 'GET',
+  })
+)
 
 app.get('/tb01', async (_, res) => {
   try {
