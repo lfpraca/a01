@@ -8,6 +8,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 	_ "github.com/joho/godotenv/autoload"
 )
 
@@ -27,5 +28,6 @@ func main() {
 	router.HandleFunc("/tb01", TbPostHandler).Methods("POST")
 
     fmt.Println("Servidor iniciado em :8080")
-    http.ListenAndServe(":8080", router)
+    routeHandler := cors.Default().Handler(router)
+    http.ListenAndServe(":8080", routeHandler)
 }

@@ -28,12 +28,18 @@
 
               const data = { texto: texto_input }
 
-              $.post("http://localhost:8080/tb01", data, function (res) {
+              $.ajax({
+	        type: "POST",
+		url: "http://localhost:8080/tb01",
+		data: JSON.stringify(data),
+		contentType: "application/json",
+		success: function (res) {
                   console.log("Registro criado com sucesso")
-              })
-		  .fail(function (err) {
-		      console.error("Falha ao criar registros: " + err)
-		  })
+                },
+		error: function (err) {
+		  console.error("Falha ao criar registros: " + err)
+		},
+	      })
 
 	      $("#textoTextbox").val("")
 	  })
