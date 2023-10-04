@@ -1,0 +1,4 @@
+POST http://localhost:8080/tb01
+Content-Type: application/x-www-form-urlencoded
+
+texto=meu_texto
