@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A01</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <h1>Post</h1>
+    <input type="text" id="textoTextbox" placeholder="Insira texto">
+    <button id="enviarButton">Enviar</button>
+
+    <h1>Get</h1>
+    <table id="getTable" class="bordered-table">
+      <tr>
+	<th>Id</th>
+	<th>Texto</th>
+	<th>Data</th>
+      </tr>
+    </table>
+    <button id="pesquisarButton">Pesquisar</button>
+
+    <script>
+      $(document).ready(function () {
+	  $("#enviarButton").click(function () {
+	      const texto_input = $("#textoTextbox").val()
+
+              const data = { texto: texto_input }
+
+              $.post("http://localhost:8080/tb01", data, function (res) {
+                  console.log("Registro criado com sucesso")
+              })
+		  .fail(function (err) {
+		      console.error("Falha ao criar registros: " + err)
+		  })
+
+	      $("#textoTextbox").val("")
+	  })
+	  $("#pesquisarButton").click(function () {
+	      $("#getTable tr:not(:first)").remove()
+
+	      $.get("http://localhost:3000/tb01", function (res) {
+		  res.forEach(function (item) {
+		      let linha = $("<tr>")
+		      linha.append("<td>" + item.id + "</td>")
+		      linha.append("<td>" + item.col_texto + "</td>")
+		      linha.append("<td>" + item.col_dt + "</td>")
+		      $("#getTable").append(linha)
+		  })
+	      })
+		  .fail(function (err) {
+		      console.error("Falha ao buscar registros: " + err)
+		  })
+	  })
+      })
+    </script>
+  </body>
+</html>
+
+<style>
+  .bordered-table {
+      border: 1px solid black;
+  }
+
+  .bordered-table th, .bordered-table td {
+      border: 1px solid black;
+  }
+</style>
