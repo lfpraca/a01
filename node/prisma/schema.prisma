@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./db-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model tb01 {
+  id        Int      @id(map: "tb01_pk") @default(autoincrement())
+  col_texto String?
+  col_dt    DateTime @db.Timestamp(6)
+
+  @@index([col_dt(sort: Desc)])
+}
