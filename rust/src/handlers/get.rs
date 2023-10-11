@@ -1,4 +1,4 @@
-use axum::{debug_handler, extract::State, http::StatusCode, response::IntoResponse, Json};
+use axum::{extract::State, http::StatusCode, response::IntoResponse, Json};
 use serde::Serialize;
 use sqlx::{query_as, types::chrono::NaiveDateTime, FromRow, PgPool};
 
