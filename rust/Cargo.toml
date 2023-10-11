@@ -1,0 +1,15 @@
+[package]
+name = "rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = { version = "0.6.20" }
+tokio = { version = "1.32.0", features = ["full"] }
+anyhow = "1.0.75"
+serde = { version = "1.0.188", features = ["derive"] }
+dotenvy = "0.15.7"
+sqlx = { version = "0.7.2", features = ["postgres", "runtime-tokio", "time", "chrono"] }
+chrono = { version = "0.4.31", features = ["serde"] }

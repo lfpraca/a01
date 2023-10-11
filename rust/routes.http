@@ -1,0 +1,9 @@
+GET http://localhost:8080/tb01
+
+#
+POST http://localhost:8080/tb01
+Content-Type: application/json
+
+{
+	"texto": "a"
+}
